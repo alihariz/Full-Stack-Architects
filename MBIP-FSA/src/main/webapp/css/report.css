@@ -1,0 +1,91 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.header .icon-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Validation View Buttons */
+.validation-view {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.validation-button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  color: #030303;
+  background-color: rgb(34, 223, 66);
+  border: none;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  width: 80%;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.validation-button:hover {
+  background-color: rgb(28, 178, 53);
+}
+
+/* Report Generate Buttons */
+.report-generate {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.report-button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  color: #000000;
+  background-color: #5a8dee;
+  border: none;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  width: 80%;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.report-button:hover {
+  background-color: #4ad0a5;
+}
+
+.report-button.exception {
+  background-color: #5a8dee;
+}
+
+.report-button.summary {
+  background-color: #5a8dee;
+}
+
+.report-button.summary:hover {
+  background-color: #4ad0a5;
+}

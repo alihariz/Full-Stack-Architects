@@ -1,0 +1,108 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  margin: auto;
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eaf4f1;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.header .logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+}
+
+.header h1 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #005f57;
+}
+
+/* User Section */
+.user-section {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.user-section h2 {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.user-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  padding: 10px;
+}
+
+.option {
+  background-color: #d9d4cf;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.option img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.option p {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* Footer Navigation */
+.footer {
+  display: flex;
+  justify-content: space-around;
+  background-color: #eaf4f1;
+  width: 100%;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid #ccc;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #005f57;
+}
+
+.nav-item img {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 5px;
+}

@@ -1,0 +1,116 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Water Consumption</title>
+</head>
+<body>
+  <header>
+    Water Consumption Data
+  </header>
+  <main>
+      <form  action="history.html" method="post">
+      <label for="people">Total People in Household:</label>
+      <input type="number" id="people" name="people">
+
+      <label for="waterMeter">Water Meter Reading (m³):</label>
+      <input type="number" id="waterMeter" name="waterMeter">
+
+      <label for="bathrooms">Number of Bathrooms:</label>
+      <input type="number" id="bathrooms" name="bathrooms">
+
+      <button type="submit">Save</button>
+    </form>
+    
+
+    <button onclick="goBackHome()">Back to Home</button>
+  </main>
+  <footer>
+    <p>© 2024 Carbon Tracker</p>
+  </footer>
+
+  <script>
+    function goBackHome() {
+      window.location.href = "index.html"; // Navigate back to the home page
+    }
+  </script>
+</body>
+</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Water Tracking Form</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>Water Tracking System</header>
+
+  <div class="container">
+    <h1>Track Your Waste</h1>
+    <form action="#" method="POST" enctype="multipart/form-data">
+      <!-- Date -->
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required>
+
+      <!-- Time 
+      <p class="guideline">Enter the time you insert the data.</p>
+      <label for="water-time">Data collection time:</label>
+      <input type="number" id="water-time" name="water-time" min="00.00" max="23.59" required>
+      <select id="water-time" name="water-time" required>
+        <option value="" disabled selected>AM/PM</option>
+        <option value="AM">AM</option>
+        <option value="PM">PM</option>
+      </select>-->
+      <!-- Time -->
+<p class="guideline">Enter the time you insert the data.</p>
+<label for="water-time">Data collection time:</label>
+<div style="display: flex; align-items: center; gap: 8px;">
+  <input type="number" id="water-time" name="water-time" min="00.00" max="23.59" required style="width: 70px;">
+  <select id="am-pm" name="am-pm" required style="width: 70px;">
+    <option value="" disabled selected>AM/PM</option>
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </select>
+</div>
+
+
+      <!-- Water Quantity -->
+      <label for="water-quantity">Water meter reading (&#x33A5;):</label>
+      <input type="number" id="water-quantity" name="water-quantity" min="0" required>
+      
+
+      <!-- Meter -->
+      <label for="proof">Upload your meter reading picture:</label>
+      <input type="file" id="proof" name="proof" accept=".jpg, .jpeg, .png, .pdf" required>
+      <p class="guideline">Upload a document or image of your meter reading.</p>
+
+      <!-- Meter -->
+      <label for="proof">Upload your water bill:</label>
+      <input type="file" id="proof" name="proof" accept=".jpg, .jpeg, .png, .pdf" required>
+      <p class="guideline">Upload a document or image of your water bill.</p>
+      <p class="guideline">You may use <a href="https://www.camscanner.com/download"><b>Cam Scanner application</b></a> </p>
+      <p class="guideline"><a href="https://www.youtube.com/watch?v=0a5EK-ZCQNE"><b>Cam Scanner</b></a> guide </p>
+
+      <!-- Submit Button -->
+      <button type="submit">Save</button>
+      <button type="button" onclick="goBackHome()">Back to Home</button>
+    </form>
+  </div>
+
+  <footer>
+    &copy; 2024 Water Tracking System
+  </footer>
+
+  <script>
+    function goBackHome() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

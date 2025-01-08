@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Summary Report</title>
+  <link rel="stylesheet" href="css/summary.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <button class="icon-button">☰</button>
+      <button class="icon-button">🏠</button>
+    </header>
+    <main>
+      <section class="summary-report">
+        <h2>Summary Report</h2>
+
+        <div class="chart-container">
+          <canvas id="electricityChart"></canvas>
+          <div id="electricity-stats">
+            <p><strong>Highest Usage Month:</strong> <span id="electricity-max"></span></p>
+            <p><strong>Lowest Usage Month:</strong> <span id="electricity-min"></span></p>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <canvas id="waterChart"></canvas>
+          <div id="water-stats">
+            <p><strong>Highest Usage Month:</strong> <span id="water-max"></span></p>
+            <p><strong>Lowest Usage Month:</strong> <span id="water-min"></span></p>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <canvas id="wasteChart"></canvas>
+          <div id="waste-stats">
+            <p><strong>Highest Usage Month:</strong> <span id="waste-max"></span></p>
+            <p><strong>Lowest Usage Month:</strong> <span id="waste-min"></span></p>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <canvas id="carChart"></canvas>
+          <div id="car-stats">
+            <p><strong>Highest Usage Month:</strong> <span id="car-max"></span></p>
+            <p><strong>Lowest Usage Month:</strong> <span id="car-min"></span></p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const electricityData = [50000, 52000, 48000, 55000, 53000, 50000, 51000, 49000, 52000, 55000, 54000, 53000];
+    const waterData = [300, 320, 280, 340, 330, 300, 310, 290, 320, 340, 330, 320];
+    const wasteData = [2000, 2200, 1900, 2100, 2000, 2100, 2050, 1900, 2200, 2300, 2100, 2000];
+    const carFuelData = [600, 620, 580, 640, 610, 590, 600, 580, 620, 650, 630, 610];
+
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    // Calculate max/min for each category
+    function calculateStats(data) {
+      const max = Math.max(...data);
+      const min = Math.min(...data);
+      return {
+        max,
+        min,
+        maxMonth: months[data.indexOf(max)],
+        minMonth: months[data.indexOf(min)]
+      };
+    }
+
+    const electricityStats = calculateStats(electricityData);
+    const waterStats = calculateStats(waterData);
+    const wasteStats = calculateStats(wasteData);
+    const carStats = calculateStats(carFuelData);
+
+    // Render each chart
+    function renderChart(ctx, label, data, backgroundColor, borderColor) {
+      return new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: months,
+          datasets: [{
+            label: label,
+            data: data,
+            backgroundColor: backgroundColor,
+            borderColor: borderColor,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+
+    renderChart(
+      document.getElementById('electricityChart').getContext('2d'),
+      'Electricity Consumption (kWh)',
+      electricityData,
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 99, 132, 1)'
+    );
+
+    renderChart(
+      document.getElementById('waterChart').getContext('2d'),
+      'Water Consumption (m³)',
+      waterData,
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(54, 162, 235, 1)'
+    );
+
+    renderChart(
+      document.getElementById('wasteChart').getContext('2d'),
+      'Waste Generate (kg)',
+      wasteData,
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(75, 192, 192, 1)'
+    );
+
+    renderChart(
+      document.getElementById('carChart').getContext('2d'),
+      'Car Fuel Consumption (gallons)',
+      carFuelData,
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(153, 102, 255, 1)'
+    );
+
+    // Display stats
+    document.getElementById('electricity-max').innerText = `${electricityStats.maxMonth} (${electricityStats.max} kWh)`;
+    document.getElementById('electricity-min').innerText = `${electricityStats.minMonth} (${electricityStats.min} kWh)`;
+
+    document.getElementById('water-max').innerText = `${waterStats.maxMonth} (${waterStats.max} m³)`;
+    document.getElementById('water-min').innerText = `${waterStats.minMonth} (${waterStats.min} m³)`;
+
+    document.getElementById('waste-max').innerText = `${wasteStats.maxMonth} (${wasteStats.max} kg)`;
+    document.getElementById('waste-min').innerText = `${wasteStats.minMonth} (${wasteStats.min} kg)`;
+
+    document.getElementById('car-max').innerText = `${carStats.maxMonth} (${carStats.max} gallons)`;
+    document.getElementById('car-min').innerText = `${carStats.minMonth} (${carStats.min} gallons)`;
+  </script>
+</body>
+</html>

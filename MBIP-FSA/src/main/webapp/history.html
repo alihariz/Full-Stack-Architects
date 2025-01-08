@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submission History</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Submission History</h1>
+        <div class="view-toggle">
+            <a href="history-user.html"><button>User View</button></a>
+            <a href="history-admin.html"><button>Admin View</button></a>
+        </div>
+    </header>
+    <main>
+        <div class="filter">
+            <label for="timeFilter">Filter Submissions:</label>
+            <select id="timeFilter" onchange="filterByTime()">
+                <option value="all">All Time</option>
+                <option value="10months">Last 10 Months</option>
+            </select>
+        </div>
+        <div class="container">
+            <table id="historyTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Consumption Type</th>
+                        <th>Details</th>
+                        <th>Submission Date</th>
+                        <th>User</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Car Emission</td>
+                        <td>25.99 kg CO2</td>
+                        <td>2024-11-20</td>
+                        <td>User1</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Electricity</td>
+                        <td>250 kWh, 125 kg CO2</td>
+                        <td>2024-10-15</td>
+                        <td>User2</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Water</td>
+                        <td>300 liters</td>
+                        <td>2023-09-05</td>
+                        <td>User1</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Waste</td>
+                        <td>20 kg waste, 5 kg CO2</td>
+                        <td>2022-08-12</td>
+                        <td>User3</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Natural Gas</td>
+                        <td>15 therms, 90 kg CO2</td>
+                        <td>2024-07-25</td>
+                        <td>User4</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Public Transport</td>
+                        <td>45 rides, 18 kg CO2</td>
+                        <td>2024-06-14</td>
+                        <td>User2</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Groceries</td>
+                        <td>120 kg food waste, 30 kg CO2</td>
+                        <td>2024-05-03</td>
+                        <td>User5</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <footer>
+        <p>© 2024 Carbon Tracker</p>
+    </footer>
+</body>
+</html>
+
+
+
