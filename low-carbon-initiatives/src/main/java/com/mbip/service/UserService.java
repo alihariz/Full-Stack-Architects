@@ -1,9 +1,10 @@
 package com.mbip.service;
 
-import com.mbip.model.User;
-import com.mbip.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.mbip.model.User;
+import com.mbip.repository.UserRepository;
 
 @Service
 public class UserService {

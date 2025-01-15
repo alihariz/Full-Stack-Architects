@@ -1,10 +1,16 @@
 package com.mbip.controller;
 
-import com.mbip.model.User;
-import com.mbip.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mbip.model.User;
+import com.mbip.service.UserService;
+
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -14,17 +20,20 @@ public class AuthController {
     private UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody User user) {
+    public ResponseEntity<String> registerUser(@RequestBody User user) {
         userService.registerUser(user);
-        return ResponseEntity.ok("User registered successfully!");
+        return ResponseEntity.ok("User registered successfully");
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
-        User authenticatedUser = userService.authenticateUser(username, password);
+    public ResponseEntity<String> login(@RequestBody User user, HttpSession session) {
+        User authenticatedUser = userService.authenticateUser(user.getUsername(), user.getPassword());
         if (authenticatedUser != null) {
-            return ResponseEntity.ok("Login successful for user: " + authenticatedUser.getRole());
+            session.setAttribute("username", authenticatedUser.getUsername());
+            session.setAttribute("role", authenticatedUser.getRole());
+            return ResponseEntity.ok("Login successful");
+        } else {
+            return ResponseEntity.status(401).body("Invalid username or password");
         }
-        return ResponseEntity.status(401).body("Invalid credentials");
     }
 }
