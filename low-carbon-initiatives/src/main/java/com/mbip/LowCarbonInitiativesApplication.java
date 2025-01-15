@@ -1,4 +1,4 @@
-package com.mbip.low_carbon_initiatives;
+package com.mbip;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
