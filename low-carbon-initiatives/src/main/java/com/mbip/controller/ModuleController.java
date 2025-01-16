@@ -1,7 +1,6 @@
 package com.mbip.controller;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mbip.service.ModuleService;
 
+import jakarta.servlet.http.HttpSession;
+
 @RestController
 @RequestMapping("/api/modules")
 public class ModuleController {
@@ -21,84 +22,73 @@ public class ModuleController {
 
     // Waste Management
     @PostMapping("/waste")
-    public String submitWasteData(@RequestParam String username,
-                                  @RequestParam double wasteProduced,
-                                  @RequestParam String submissionDate) {
+    public String submitWasteData(@RequestParam double wasteProduced,
+                                  @RequestParam String submissionDate,
+                                  HttpSession session) {
+        String username = (String) session.getAttribute("username");
         moduleService.submitWasteData(username, wasteProduced, LocalDate.parse(submissionDate));
         return "Waste data submitted successfully";
     }
 
-    @GetMapping("/waste")
-    public List<?> getWasteReports(@RequestParam String username) {
-        return moduleService.getWasteReports(username);
-    }
-
     @GetMapping("/waste/summary")
-    public double getMonthlyWasteSummary(@RequestParam String username) {
+    public double getMonthlyWasteSummary(HttpSession session) {
+        String username = (String) session.getAttribute("username");
         return moduleService.getMonthlyWasteCarbonEmissions(username);
     }
 
     // Water Consumption
     @PostMapping("/water")
-    public String submitWaterData(@RequestParam String username,
-                                  @RequestParam double waterUsed,
-                                  @RequestParam String submissionDate) {
+    public String submitWaterData(@RequestParam double waterUsed,
+                                  @RequestParam String submissionDate,
+                                  HttpSession session) {
+        String username = (String) session.getAttribute("username");
         moduleService.submitWaterData(username, waterUsed, LocalDate.parse(submissionDate));
         return "Water data submitted successfully";
     }
 
-    @GetMapping("/water")
-    public List<?> getWaterReports(@RequestParam String username) {
-        return moduleService.getWaterReports(username);
-    }
-
     @GetMapping("/water/summary")
-    public double getMonthlyWaterSummary(@RequestParam String username) {
+    public double getMonthlyWaterSummary(HttpSession session) {
+        String username = (String) session.getAttribute("username");
         return moduleService.getMonthlyWaterCarbonEmissions(username);
     }
 
     // Car Emissions
     @PostMapping("/car")
-    public String submitCarData(@RequestParam String username,
-                                 @RequestParam double distanceDriven,
+    public String submitCarData(@RequestParam double distanceDriven,
                                  @RequestParam double fuelEfficiency,
-                                 @RequestParam String submissionDate) {
+                                 @RequestParam String submissionDate,
+                                 HttpSession session) {
+        String username = (String) session.getAttribute("username");
         moduleService.submitCarData(username, distanceDriven, fuelEfficiency, LocalDate.parse(submissionDate));
         return "Car data submitted successfully";
     }
 
-    @GetMapping("/car")
-    public List<?> getCarReports(@RequestParam String username) {
-        return moduleService.getCarReports(username);
-    }
-
     @GetMapping("/car/summary")
-    public double getMonthlyCarSummary(@RequestParam String username) {
+    public double getMonthlyCarSummary(HttpSession session) {
+        String username = (String) session.getAttribute("username");
         return moduleService.getMonthlyCarCarbonEmissions(username);
     }
 
     // Electrical Consumption
     @PostMapping("/electricity")
-    public String submitElectricityData(@RequestParam String username,
-                                        @RequestParam double electricityUsed,
-                                        @RequestParam String submissionDate) {
+    public String submitElectricityData(@RequestParam double electricityUsed,
+                                        @RequestParam String submissionDate,
+                                        HttpSession session) {
+        String username = (String) session.getAttribute("username");
         moduleService.submitElectricityData(username, electricityUsed, LocalDate.parse(submissionDate));
         return "Electricity data submitted successfully";
     }
 
-    @GetMapping("/electricity")
-    public List<?> getElectricityReports(@RequestParam String username) {
-        return moduleService.getElectricalReports(username);
-    }
-
     @GetMapping("/electricity/summary")
-    public double getMonthlyElectricitySummary(@RequestParam String username) {
+    public double getMonthlyElectricitySummary(HttpSession session) {
+        String username = (String) session.getAttribute("username");
         return moduleService.getMonthlyElectricalCarbonEmissions(username);
     }
 
     // Overall Carbon Consumption Report
     @GetMapping("/overall")
-    public double getOverallReport(@RequestParam String username) {
+    public double getOverallReport(HttpSession session) {
+        String username = (String) session.getAttribute("username");
         return moduleService.getOverallCarbonReport(username);
     }
 }

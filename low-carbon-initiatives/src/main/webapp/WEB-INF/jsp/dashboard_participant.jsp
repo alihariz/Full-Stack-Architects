@@ -5,57 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Participant Dashboard</title>
     <script>
-        async function fetchMonthlySummaries() {
-            try {
-                const username = document.getElementById("username").textContent;
-    
-                const wasteResponse = await fetch(`/api/modules/waste/summary?username=${username}`);
-                const waterResponse = await fetch(`/api/modules/water/summary?username=${username}`);
-                const carResponse = await fetch(`/api/modules/car/summary?username=${username}`);
-                const electricityResponse = await fetch(`/api/modules/electricity/summary?username=${username}`);
-    
-                const wasteSummary = await wasteResponse.json();
-                const waterSummary = await waterResponse.json();
-                const carSummary = await carResponse.json();
-                const electricitySummary = await electricityResponse.json();
-    
-                document.getElementById("wasteSummary").innerText = `Waste: ${wasteSummary.toFixed(2)} kg CO2`;
-                document.getElementById("waterSummary").innerText = `Water: ${waterSummary.toFixed(2)} kg CO2`;
-                document.getElementById("carSummary").innerText = `Car: ${carSummary.toFixed(2)} kg CO2`;
-                document.getElementById("electricitySummary").innerText = `Electricity: ${electricitySummary.toFixed(2)} kg CO2`;
-    
-                const totalEmissions = wasteSummary + waterSummary + carSummary + electricitySummary;
-                document.getElementById("totalSummary").innerText = `Total Carbon Emissions This Month: ${totalEmissions.toFixed(2)} kg CO2`;
-            } catch (error) {
-                console.error("Error fetching monthly summaries:", error);
-            }
+        // Function to fetch emissions data and update the UI
+        function fetchEmissions(endpoint, elementId) {
+            fetch(endpoint)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById(elementId).textContent = data.toFixed(2) + " kg CO2";
+                })
+                .catch(error => {
+                    console.error("Error fetching emissions data:", error);
+                    document.getElementById(elementId).textContent = "Error";
+                });
         }
-    
-        document.addEventListener("DOMContentLoaded", fetchMonthlySummaries);
+
+        // Fetch emissions data for all modules when the page loads
+        window.onload = function () {
+            fetchEmissions('/api/modules/waste/summary', 'waste-emissions');
+            fetchEmissions('/api/modules/water/summary', 'water-emissions');
+            fetchEmissions('/api/modules/car/summary', 'car-emissions');
+            fetchEmissions('/api/modules/electricity/summary', 'electricity-emissions');
+        };
     </script>
 </head>
 <body>
     <h1>Participant Dashboard</h1>
 
-    <!-- Summary Section -->
-    <div id="carbonEmissionsSummary">
-        <h3>Monthly Carbon Emissions:</h3>
-        <ul>
-            <li id="wasteSummary">Loading...</li>
-            <li id="waterSummary">Loading...</li>
-            <li id="carSummary">Loading...</li>
-            <li id="electricitySummary">Loading...</li>
-        </ul>
-        <h4 id="totalSummary">Calculating Total...</h4>
-    </div>
+    <h2>Monthly Carbon Emissions:</h2>
+    <ul id="monthly-emissions">
+        <li>Waste: <span id="waste-emissions">Loading...</span></li>
+        <li>Water: <span id="water-emissions">Loading...</span></li>
+        <li>Car: <span id="car-emissions">Loading...</span></li>
+        <li>Electricity: <span id="electricity-emissions">Loading...</span></li>
+    </ul>
 
-    <!-- Links to Submit Data -->
+    <h3>Submit Data:</h3>
     <ul>
         <li><a href="/waste_management">Submit Waste Management Data</a></li>
         <li><a href="/water_consumption">Submit Water Consumption Data</a></li>
         <li><a href="/car_emissions">Submit Car Emissions Data</a></li>
         <li><a href="/electrical_consumption">Submit Electrical Consumption Data</a></li>
     </ul>
+
+    <h3>Logout:</h3>
     <a href="/logout">Logout</a>
 </body>
 </html>

@@ -75,9 +75,6 @@
         <label for="submissionDate">Submission Date:</label>
         <input type="date" id="submissionDate" name="submissionDate" required>
         <br>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
         <button type="submit">Submit</button>
     </form>
     <br>
