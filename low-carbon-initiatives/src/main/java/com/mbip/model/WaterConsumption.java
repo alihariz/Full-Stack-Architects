@@ -1,5 +1,6 @@
-// WaterConsumption.java
 package com.mbip.model;
+
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,12 +11,13 @@ import lombok.Data;
 @Entity
 @Data
 public class WaterConsumption {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
-
     private double waterUsed; // in liters
     private double carbonEmissions; // calculated value
+    private LocalDate submissionDate; // Date of submission
 }

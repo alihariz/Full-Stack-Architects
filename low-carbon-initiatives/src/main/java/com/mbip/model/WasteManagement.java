@@ -1,5 +1,7 @@
 package com.mbip.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,4 +19,5 @@ public class WasteManagement {
     private String username; // User who submitted
     private double wasteProduced; // in kg
     private double carbonEmissions; // calculated value
+    private LocalDate submissionDate; // New field for date of submission
 }

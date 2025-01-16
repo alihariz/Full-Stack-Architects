@@ -1,5 +1,6 @@
-// CarEmissions.java
 package com.mbip.model;
+
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,13 +11,14 @@ import lombok.Data;
 @Entity
 @Data
 public class CarEmissions {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
-
     private double distanceDriven; // in km
     private double fuelEfficiency; // in km/l
     private double carbonEmissions; // calculated value
+    private LocalDate submissionDate; // Date of submission
 }

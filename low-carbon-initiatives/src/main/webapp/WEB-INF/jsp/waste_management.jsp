@@ -6,7 +6,7 @@
     <title>Waste Management</title>
     <script>
         function submitWasteForm(event) {
-            event.preventDefault(); // Prevent form submission default behavior
+            event.preventDefault();
 
             const form = document.getElementById("wasteForm");
             const formData = new FormData(form);
@@ -17,8 +17,8 @@
             })
             .then(response => response.text())
             .then(message => {
-                alert(message); // Show popup with success message
-                window.location.href = "/dashboard-participant"; // Redirect to the dashboard
+                alert(message);
+                window.location.href = "/dashboard-participant";
             })
             .catch(error => {
                 console.error("Error submitting data:", error);
@@ -32,6 +32,9 @@
     <form id="wasteForm" action="/api/modules/waste" method="post" onsubmit="submitWasteForm(event)">
         <label for="wasteProduced">Waste Produced (kg):</label>
         <input type="number" id="wasteProduced" name="wasteProduced" step="0.01" required>
+        <br>
+        <label for="submissionDate">Submission Date:</label>
+        <input type="date" id="submissionDate" name="submissionDate" required>
         <br>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
