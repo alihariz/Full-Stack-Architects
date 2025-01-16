@@ -9,36 +9,54 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class ViewController {
 
-    @GetMapping("/dashboard")
-        public String dashboard(HttpSession session, Model model) {
-            String username = (String) session.getAttribute("username");
-            String role = (String) session.getAttribute("role");
+    @GetMapping("/")
+    public String redirectToLoginOrDashboard(HttpSession session) {
+        String username = (String) session.getAttribute("username");
+        String role = (String) session.getAttribute("role");
 
-            System.out.println("Username: " + username);
-            System.out.println("Role: " + role);
-
-            if (username == null || role == null) {
-                return "redirect:/login";
+        if (username != null && role != null) {
+            if ("MBIP".equals(role)) {
+                return "redirect:/dashboard-mbip";
+            } else if ("PARTICIPANT".equals(role)) {
+                return "redirect:/dashboard-participant";
             }
-
-            model.addAttribute("username", username);
-            if (role.equals("PARTICIPANT")) {
-                return "dashboard_participant";
-            } else if (role.equals("MBIP")) {
-                return "dashboard_mbip";
-            }
-
-            return "error";
         }
+        return "redirect:/login";
+    }
 
     @GetMapping("/login")
     public String login() {
-        return "login"; // Show the login.jsp
+        return "login";
+    }
+
+    @GetMapping("/register")
+    public String register() {
+        return "register";
     }
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
-        session.invalidate(); // Clear the session
+        session.invalidate();
         return "redirect:/login";
+    }
+
+    @GetMapping("/dashboard-mbip")
+    public String mbipDashboard(HttpSession session, Model model) {
+        String username = (String) session.getAttribute("username");
+        if (username == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("username", username);
+        return "dashboard_mbip";
+    }
+
+    @GetMapping("/dashboard-participant")
+    public String participantDashboard(HttpSession session, Model model) {
+        String username = (String) session.getAttribute("username");
+        if (username == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("username", username);
+        return "dashboard_participant";
     }
 }

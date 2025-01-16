@@ -6,11 +6,8 @@
     <title>MBIP Dashboard</title>
 </head>
 <body>
-    <h1>Welcome, ${username}</h1>
-    <p>This is the MBIP Dashboard.</p>
-    <ul>
-        <li><a href="#">Manage Initiatives</a></li>
-        <li><a href="#">View Submissions</a></li>
-    </ul>
+    <h1>MBIP Dashboard</h1>
+    <p>Welcome, ${username}</p>
+    <a href="/logout">Logout</a>
 </body>
 </html>

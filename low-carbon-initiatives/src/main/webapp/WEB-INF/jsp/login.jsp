@@ -16,5 +16,8 @@
         <br>
         <button type="submit">Login</button>
     </form>
+    <br>
+    <!-- Add Register Button -->
+    <button onclick="window.location.href='/register'">Register</button>
 </body>
 </html>

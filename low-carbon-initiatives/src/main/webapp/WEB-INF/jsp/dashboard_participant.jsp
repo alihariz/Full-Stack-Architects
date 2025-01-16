@@ -6,11 +6,8 @@
     <title>Participant Dashboard</title>
 </head>
 <body>
-    <h1>Welcome, ${username}</h1>
-    <p>This is the Participant Dashboard.</p>
-    <ul>
-        <li><a href="#">View Initiatives</a></li>
-        <li><a href="#">Submit Ideas</a></li>
-    </ul>
+    <h1>Participant Dashboard</h1>
+    <p>Welcome, ${username}</p>
+    <a href="/logout">Logout</a>
 </body>
 </html>
