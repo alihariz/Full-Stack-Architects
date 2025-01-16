@@ -7,7 +7,12 @@
 </head>
 <body>
     <h1>Participant Dashboard</h1>
-    <p>Welcome, ${username}</p>
+    <ul>
+        <li><a href="/waste_management">Submit Waste Management Data</a></li>
+        <li><a href="/water_consumption">Submit Water Consumption Data</a></li>
+        <li><a href="/car_emissions">Submit Car Emissions Data</a></li>
+        <li><a href="/electrical_consumption">Submit Electrical Consumption Data</a></li>
+    </ul>
     <a href="/logout">Logout</a>
 </body>
 </html>

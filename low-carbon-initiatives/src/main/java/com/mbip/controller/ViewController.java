@@ -59,4 +59,25 @@ public class ViewController {
         model.addAttribute("username", username);
         return "dashboard_participant";
     }
+
+    // Module Pages
+    @GetMapping("/waste_management")
+    public String wasteManagementPage() {
+        return "waste_management"; // Maps to /WEB-INF/jsp/waste_management.jsp
+    }
+
+    @GetMapping("/water_consumption")
+    public String waterConsumptionPage() {
+        return "water_consumption"; // Maps to /WEB-INF/jsp/water_consumption.jsp
+    }
+
+    @GetMapping("/car_emissions")
+    public String carEmissionsPage() {
+        return "car_emissions"; // Maps to /WEB-INF/jsp/car_emissions.jsp
+    }
+
+    @GetMapping("/electrical_consumption")
+    public String electricalConsumptionPage() {
+        return "electrical_consumption"; // Maps to /WEB-INF/jsp/electrical_consumption.jsp
+    }
 }
