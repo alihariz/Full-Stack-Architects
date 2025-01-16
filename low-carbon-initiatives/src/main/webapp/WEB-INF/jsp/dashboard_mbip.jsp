@@ -8,8 +8,8 @@
 <body>
     <h1>MBIP Dashboard</h1>
     <ul>
-        <li><a href="/module_reports.jsp">View Module Reports</a></li>
-        <li><a href="/overall_report.jsp">View Overall Report</a></li>
+        <li><a href="/module_reports">View Module Reports</a></li>
+        <li><a href="/overall_report">View Overall Report</a></li>
     </ul>
     <a href="/logout">Logout</a>
 </body>

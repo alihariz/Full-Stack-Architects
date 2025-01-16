@@ -80,4 +80,14 @@ public class ViewController {
     public String electricalConsumptionPage() {
         return "electrical_consumption"; // Maps to /WEB-INF/jsp/electrical_consumption.jsp
     }
+
+    @GetMapping("/module_reports")
+    public String moduleReportsPage() {
+        return "module_reports"; // Maps to /WEB-INF/jsp/module_reports.jsp
+    }
+
+    @GetMapping("/overall_report")
+    public String overallReportPage() {
+        return "overall_report"; // Maps to /WEB-INF/jsp/overall_report.jsp
+    }
 }

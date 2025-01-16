@@ -87,8 +87,11 @@ public class ModuleController {
 
     // Overall Carbon Consumption Report
     @GetMapping("/overall")
-    public double getOverallReport(HttpSession session) {
-        String username = (String) session.getAttribute("username");
-        return moduleService.getOverallCarbonReport(username);
+    public double getOverallReport(@RequestParam String username) {
+        System.out.println("Username: " + username); // Debugging
+        double report = moduleService.getOverallCarbonReport(username);
+        System.out.println("Report: " + report); // Debugging
+    return report;
     }
+
 }
